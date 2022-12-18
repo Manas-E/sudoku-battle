@@ -116,6 +116,7 @@ class _BattlePageState extends State<BattlePage> {
           elevation: 5),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: EdgeInsets.only(

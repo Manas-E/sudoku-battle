@@ -115,39 +115,32 @@ class _ProfilePageState extends State<ProfilePage> {
           iconSize: 40,
           onTap: _onItemTapped,
           elevation: 5),
-      body: Column(
-        children: [
-          Expanded(
-              child: Container(
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Player X',
-                          style: fontStyle,
-                        ),
-                        Text(xScore.toString(), style: fontStyle),
-                      ],
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                  left: screenWidth * 0.2,
+                  right: screenWidth * 0.2,
+                  bottom: 15),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  color: Colors.white,
+                  child: Center(
+                    child: Text(
+                      'Login',
+                      style: fontStyleBlack,
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(30.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Player O', style: fontStyle),
-                        Text(oScore.toString(), style: fontStyle),
-                      ],
-                    ),
-                  ),
-                ]),
-          )),
-        ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
