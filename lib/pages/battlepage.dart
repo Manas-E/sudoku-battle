@@ -25,7 +25,7 @@ class _BattlePageState extends State<BattlePage> {
   var fontStyleXl = GoogleFonts.permanentMarker(
       textStyle: TextStyle(color: Colors.white, fontSize: 40));
   var fontStyleBlack = GoogleFonts.pressStart2p(
-      textStyle: TextStyle(color: Colors.black, fontSize: 20));
+      textStyle: TextStyle(height: 1.5, color: Colors.black, fontSize: 20));
 
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
@@ -117,6 +117,9 @@ class _BattlePageState extends State<BattlePage> {
       body: Center(
         child: Column(
           children: [
+            Container(
+                child: Image.asset("lib/public/battle3.gif",
+                    width: screenWidth * 0.4, height: screenHeight * 0.5)),
             Padding(
               padding: EdgeInsets.only(
                   left: screenWidth * 0.2,
@@ -128,9 +131,16 @@ class _BattlePageState extends State<BattlePage> {
                   padding: EdgeInsets.all(5),
                   color: Colors.white,
                   child: Center(
-                    child: Text(
-                      'Join a Room',
-                      style: fontStyleBlack,
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 80,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      child: Text(
+                        'Join a Room',
+                        style: fontStyleBlack,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
@@ -147,9 +157,16 @@ class _BattlePageState extends State<BattlePage> {
                   padding: EdgeInsets.all(5),
                   color: Colors.white,
                   child: Center(
-                    child: Text(
-                      'Create a Room',
-                      style: fontStyleBlack,
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 80,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      child: Text(
+                        'Create a Room',
+                        style: fontStyleBlack,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
