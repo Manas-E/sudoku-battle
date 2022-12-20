@@ -6,25 +6,36 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:sudoku_battle/pages/GoogleSignInProvider.dart';
 import 'package:sudoku_battle/pages/battlepage.dart';
 import 'package:sudoku_battle/pages/homepage.dart';
+import 'package:sudoku_battle/pages/loginRegisterPage.dart';
 import 'package:sudoku_battle/pages/profilepage.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  static const String title = 'Authentication Page';
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Tic Tac Toe',
-        debugShowCheckedModeBanner: false,
-        home: IntroScreen());
-  }
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+    create: (context) => GoogleSignInProvider(),
+    child: MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: title,
+      theme: ThemeData(primarySwatch: Colors.cyan),
+      home: loginRegisterPage(),
+    ),
+  );
 }
 
 class IntroScreen extends StatefulWidget {
