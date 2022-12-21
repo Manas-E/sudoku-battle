@@ -10,6 +10,9 @@ import 'package:provider/provider.dart';
 import 'package:sudoku_battle/pages/GoogleSignInProvider.dart';
 import 'package:sudoku_battle/pages/battlepage.dart';
 import 'package:sudoku_battle/pages/homepage.dart';
+import 'package:sudoku_battle/pages/neu.dart';
+import 'package:sudoku_battle/pages/profilepage.dart';
+import 'package:sudoku_battle/pages/sudoku.dart';
 import 'package:sudoku_battle/pages/loginRegisterPage.dart';
 import 'package:sudoku_battle/pages/profilepage.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -86,26 +89,35 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-
+    Widget inner = Icon(
+      Icons.filter_1,
+      semanticLabel: "label",
+      textDirection: TextDirection.ltr,
+      size: 100,
+      // Changing icon color on
+      // the basis of it's elevation
+      color: Color.fromARGB(255, 255, 255, 255),
+    );
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         home: Scaffold(
             backgroundColor: Colors.grey[900],
             body: Navigator(
               onGenerateRoute: (settings) {
+
                 Widget page = BattlePage();
 
-                switch (_selectedIndex) {
-                  case 0:
-                    page = BattlePage();
-                    break;
-                  case 1:
-                    page = MyHomePage();
-                    break;
-                  case 2:
-                    page = ProfilePage();
-                    break;
-                }
+                // switch (_selectedIndex) {
+                //   case 0:
+                //     page = BattlePage();
+                //     break;
+                //   case 1:
+                //     page = MyHomePage();
+                //     break;
+                //   case 2:
+                //     page = ProfilePage();
+                //     break;
+                // }
                 return MaterialPageRoute(builder: (_) => page);
               },
             )));
