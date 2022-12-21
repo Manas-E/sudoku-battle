@@ -3,6 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sudoku_battle/pages/battlepage.dart';
 import 'package:sudoku_battle/pages/profilepage.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'loggedInWidget.dart';
+import 'loginRegisterPage.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
@@ -76,6 +81,24 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
   }
+
+  @override
+  Widget build (BuildContext context) => Scaffold(
+    body: StreamBuilder(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder:  (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Something Went Wrong'));
+        } else if(snapshot.hasData) {
+          return LoggedInWidget();
+        } else {
+          return loginRegisterPage();
+        }
+      }
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {

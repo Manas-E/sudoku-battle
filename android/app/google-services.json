@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "588143529323",
+    "project_id": "sudoku-battle-d3cfd",
+    "storage_bucket": "sudoku-battle-d3cfd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588143529323:android:8d56df55d914111d2b902e",
+        "android_client_info": {
+          "package_name": "com.example.sudoku_battle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588143529323-fk76q35iavhg6pl5799at22e4rjie32m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoArHhP4J84bbaylno_ZXxnkhZgJxKCQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588143529323-fk76q35iavhg6pl5799at22e4rjie32m.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "588143529323-1o3cjueb7787lktgv7nbfbvppfkl9405.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sudokuBattle"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

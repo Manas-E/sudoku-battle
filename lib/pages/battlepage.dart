@@ -25,7 +25,7 @@ class _BattlePageState extends State<BattlePage> {
   var fontStyleXl = GoogleFonts.permanentMarker(
       textStyle: TextStyle(color: Colors.white, fontSize: 40));
   var fontStyleBlack = GoogleFonts.pressStart2p(
-      textStyle: TextStyle(color: Colors.black, fontSize: 20));
+      textStyle: TextStyle(height: 1.5, color: Colors.black, fontSize: 20));
 
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
@@ -84,6 +84,45 @@ class _BattlePageState extends State<BattlePage> {
       );
   }
 
+  TextEditingController _textFieldController = TextEditingController();
+  Future<void> _displayTextInputDialog(BuildContext context) async {
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(
+              'Join a Room',
+              style: fontStyleBlack,
+            ),
+            content: TextField(
+              onChanged: (value) {
+                setState(() {});
+              },
+              controller: _textFieldController,
+              decoration: InputDecoration(hintText: "Enter Room Code"),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text('CANCEL'),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  setState(() {
+                    Navigator.pop(context);
+                  });
+                },
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -91,6 +130,7 @@ class _BattlePageState extends State<BattlePage> {
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 243, 103, 101),
+      resizeToAvoidBottomInset: false,
       bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -114,49 +154,73 @@ class _BattlePageState extends State<BattlePage> {
           iconSize: 40,
           onTap: _onItemTapped,
           elevation: 5),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(
-                  left: screenWidth * 0.2,
-                  right: screenWidth * 0.2,
-                  bottom: 15),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  padding: EdgeInsets.all(5),
-                  color: Colors.white,
-                  child: Center(
-                    child: Text(
-                      'Join a Room',
-                      style: fontStyleBlack,
+      body: SingleChildScrollView(
+        physics: ClampingScrollPhysics(),
+        child: Center(
+          child: Column(
+            children: [
+              Container(
+                  child: Image.asset("lib/public/battle3.gif",
+                      width: screenWidth * 0.4, height: screenHeight * 0.5)),
+              Padding(
+                padding: EdgeInsets.only(
+                    left: screenWidth * 0.2,
+                    right: screenWidth * 0.2,
+                    bottom: 15),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    color: Colors.white,
+                    child: Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          _displayTextInputDialog(context);
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 80,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: Text(
+                            'Join a Room',
+                            style: fontStyleBlack,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                  left: screenWidth * 0.2,
-                  right: screenWidth * 0.2,
-                  bottom: 15),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  padding: EdgeInsets.all(5),
-                  color: Colors.white,
-                  child: Center(
-                    child: Text(
-                      'Create a Room',
-                      style: fontStyleBlack,
+              Padding(
+                padding: EdgeInsets.only(
+                    left: screenWidth * 0.2,
+                    right: screenWidth * 0.2,
+                    bottom: 15),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    color: Colors.white,
+                    child: Center(
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 80,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                        child: Text(
+                          'Create a Room',
+                          style: fontStyleBlack,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
