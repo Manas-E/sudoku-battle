@@ -120,12 +120,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Padding(
               padding: const EdgeInsets.only(top: 100),
               child: Text("Sudoku\n\nBattle", style: fontStyle),
+
             )),
             Expanded(
               flex: 2,
               child: Container(
-                  child: Image.asset("lib/public/box.gif",
-                      width: screenWidth * 0.7, height: screenHeight * 0.5)),
+                  child: Image.asset("lib/public/train.gif",
+                      width: screenWidth * 0.7, height: screenHeight * 0.7)),
             ),
             GestureDetector(
               onTap: () {
