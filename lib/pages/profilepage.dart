@@ -99,8 +99,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 label: 'Battle',
                 backgroundColor: Color.fromARGB(255, 243, 103, 101)),
             BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
+                icon: Icon(Icons.fitness_center),
+                label: 'Train',
                 backgroundColor: Color.fromARGB(255, 48, 48, 48)),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),

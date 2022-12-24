@@ -104,8 +104,7 @@ class _IntroScreenState extends State<IntroScreen> {
             backgroundColor: Colors.grey[900],
             body: Navigator(
               onGenerateRoute: (settings) {
-
-                Widget page = BattlePage();
+                Widget page = MyHomePage();
 
                 // switch (_selectedIndex) {
                 //   case 0:

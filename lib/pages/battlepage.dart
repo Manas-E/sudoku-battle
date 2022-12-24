@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sudoku_battle/pages/homepage.dart';
 import 'package:sudoku_battle/pages/profilepage.dart';
+import 'package:sudoku_battle/pages/sudoku.dart';
 
 class BattlePage extends StatefulWidget {
   const BattlePage({super.key});
@@ -138,8 +139,8 @@ class _BattlePageState extends State<BattlePage> {
                 label: 'Battle',
                 backgroundColor: Color.fromARGB(255, 243, 103, 101)),
             BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
+                icon: Icon(Icons.fitness_center),
+                label: 'Train',
                 backgroundColor: Color.fromARGB(255, 48, 48, 48)),
             BottomNavigationBarItem(
               icon: Icon(Icons.person),

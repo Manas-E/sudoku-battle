@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiver/iterables.dart';
-import 'package:sudoku_api/sudoku_api.dart';
 import 'package:sudoku_battle/components/blokChar.dart';
 import 'package:sudoku_battle/components/boxinner.dart';
 import 'package:sudoku_battle/components/button.dart';
@@ -14,7 +13,9 @@ import 'package:sudoku_battle/pages/number.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 class SudokuPage extends StatefulWidget {
-  const SudokuPage({super.key});
+  final String difficulty;
+
+  const SudokuPage({super.key, required this.difficulty});
 
   @override
   State<SudokuPage> createState() => _SudokuPageState();
@@ -27,7 +28,13 @@ class _SudokuPageState extends State<SudokuPage> {
   int xScore = 0, oScore = 0;
   int filledBoxes = 0;
   bool isDraw = true;
-  var _difficultyMode = "Easy";
+  var levels = ["Easy", "Medium", "Hard"];
+  var levelMatrix = {
+    "Easy": 30,
+    "Medium": 39,
+    "Hard": 43,
+  };
+  int emptySquares = 3;
   int mistakeCounter = 0, totalMistakes = 3;
   int hintCounter = 10;
   int scoreCounter = 0;
@@ -41,7 +48,7 @@ class _SudokuPageState extends State<SudokuPage> {
   bool hintPopup = false;
 
   var fontStyleS = GoogleFonts.pressStart2p(
-      textStyle: TextStyle(color: Colors.white, fontSize: 10));
+      textStyle: TextStyle(color: Colors.white, fontSize: 13));
   var fontStyle = GoogleFonts.pressStart2p(
       textStyle: TextStyle(color: Colors.white, fontSize: 30));
   var fontStyleXl = GoogleFonts.pressStart2p(
@@ -68,6 +75,25 @@ class _SudokuPageState extends State<SudokuPage> {
 
   @override
   void initState() {
+    switch (widget.difficulty) {
+      case "Easy":
+        setState(() {
+          emptySquares = 30;
+        });
+        break;
+
+      case "Medium":
+        setState(() {
+          emptySquares = 39;
+        });
+        break;
+
+      case "Hard":
+        setState(() {
+          emptySquares = 43;
+        });
+        break;
+    }
     generateSudoku();
 
     // TODO: implement initState
@@ -157,7 +183,7 @@ class _SudokuPageState extends State<SudokuPage> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-
+    var _difficultyMode = widget.difficulty;
     // if (hintPopup)
     //   return AlertDialog(
     //     title: Text("Hint got",
@@ -270,7 +296,7 @@ class _SudokuPageState extends State<SudokuPage> {
                       child: Text('Time', style: fontStyleHeader)),
                   Container(
                       alignment: Alignment.topCenter,
-                      child: Text(_difficultyMode, style: fontStyleTabs)),
+                      child: Text(_difficultyMode, style: fontStyleS)),
                   Container(
                     alignment: Alignment.topCenter,
                     child: Text(
@@ -325,7 +351,7 @@ class _SudokuPageState extends State<SudokuPage> {
                     physics: NeverScrollableScrollPhysics(),
                     itemBuilder: (buildContext, indexChar) {
                       BlokChar blokChar = boxInner.blokChars[indexChar];
-                      Color color = Colors.grey.shade700;
+                      Color color = Colors.grey.shade900;
                       Color colorText = Colors.white;
 
                       // change color base condition
@@ -490,7 +516,7 @@ class _SudokuPageState extends State<SudokuPage> {
   generatePuzzle() {
     // install plugins sudoku generator to generate one
     boxInners.clear();
-    var sudokuGenerator = SudokuGenerator(emptySquares: 3); //54
+    var sudokuGenerator = SudokuGenerator(emptySquares: emptySquares); //54
     // then we populate to get a possible cmbination
     // Quiver for easy populate collection using partition
     List<List<List<int>>> completes = partition(sudokuGenerator.newSudokuSolved,

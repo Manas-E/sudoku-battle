@@ -4,6 +4,7 @@ import 'package:sudoku_battle/pages/battlepage.dart';
 import 'package:sudoku_battle/pages/profilepage.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sudoku_battle/pages/sudoku.dart';
 
 import 'loggedInWidget.dart';
 import 'loginRegisterPage.dart';
@@ -96,8 +97,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   label: 'Battle',
                   backgroundColor: Color.fromARGB(255, 243, 103, 101)),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
+                  icon: Icon(Icons.fitness_center),
+                  label: 'Train',
                   backgroundColor: Color.fromARGB(255, 48, 48, 48)),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
@@ -118,9 +119,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Expanded(
                 child: Padding(
               padding: const EdgeInsets.only(top: 100),
-              child: Column(children: [
-                Expanded(child: Text("Sudoku\n\nBattle", style: fontStyle))
-              ]),
+              child: Text("Sudoku\n\nBattle", style: fontStyle),
+
             )),
             Expanded(
               flex: 2,
@@ -161,13 +161,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         bottom: 15),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        padding: EdgeInsets.all(5),
-                        color: Colors.white,
-                        child: Center(
-                          child: Text(
-                            'Easy',
-                            style: fontStyleBlack,
+                      child: GestureDetector(
+                        onTap: () {
+                          navigateToSudoku("Easy");
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          color: Colors.white,
+                          child: Center(
+                            child: Text(
+                              'Easy',
+                              style: fontStyleBlack,
+                            ),
                           ),
                         ),
                       ),
@@ -180,13 +185,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         bottom: 15),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        padding: EdgeInsets.all(5),
-                        color: Colors.white,
-                        child: Center(
-                          child: Text(
-                            'Medium',
-                            style: fontStyleBlack,
+                      child: GestureDetector(
+                        onTap: () {
+                          navigateToSudoku("Medium");
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          color: Colors.white,
+                          child: Center(
+                            child: Text(
+                              'Medium',
+                              style: fontStyleBlack,
+                            ),
                           ),
                         ),
                       ),
@@ -199,13 +209,18 @@ class _MyHomePageState extends State<MyHomePage> {
                         bottom: 30),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        padding: EdgeInsets.all(5),
-                        color: Colors.white,
-                        child: Center(
-                          child: Text(
-                            'Hard',
-                            style: fontStyleBlack,
+                      child: GestureDetector(
+                        onTap: () {
+                          navigateToSudoku("Hard");
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          color: Colors.white,
+                          child: Center(
+                            child: Text(
+                              'Hard',
+                              style: fontStyleBlack,
+                            ),
                           ),
                         ),
                       ),
@@ -216,5 +231,27 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
         )));
+  }
+
+  navigateToSudoku(difficulty) {
+    return Navigator.push(
+      context,
+      PageRouteBuilder(
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return Align(
+            child: SizeTransition(
+              sizeFactor: animation,
+              child: child,
+              axisAlignment: 0.0,
+            ),
+          );
+        },
+        transitionDuration: Duration(seconds: 2),
+        pageBuilder: (BuildContext context, Animation<double> animation,
+            Animation<double> secondaryAnimation) {
+          return SudokuPage(difficulty: difficulty);
+        },
+      ),
+    );
   }
 }
