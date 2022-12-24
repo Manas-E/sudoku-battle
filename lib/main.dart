@@ -28,14 +28,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) => ChangeNotifierProvider(
-    create: (context) => GoogleSignInProvider(),
-    child: MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: title,
-      theme: ThemeData(primarySwatch: Colors.cyan),
-      home: loginRegisterPage(),
-    ),
-  );
+        create: (context) => GoogleSignInProvider(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: title,
+          theme: ThemeData(primarySwatch: Colors.cyan),
+          home: IntroScreen(),
+        ),
+      );
 }
 
 class IntroScreen extends StatefulWidget {

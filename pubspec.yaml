@@ -70,6 +70,10 @@ flutter:
     - lib/public/battle.gif
     - lib/public/battle1.gif
     - lib/public/battle3.gif
+    - lib/public/traingif.gif
+    - lib/public/train.gif
+    - lib/public/train2.gif
+    - lib/public/train3.gif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
