@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "588143529323",
+    "firebase_url": "https://sudoku-battle-d3cfd-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "sudoku-battle-d3cfd",
     "storage_bucket": "sudoku-battle-d3cfd.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "588143529323-7ir1apgblt430rch5agkdea9cnlagi1i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.sudoku_battle",
+            "certificate_hash": "dd7f0d2648a615a7b5edf1dbb59a1076849f6c3d"
+          }
+        },
         {
           "client_id": "588143529323-fk76q35iavhg6pl5799at22e4rjie32m.apps.googleusercontent.com",
           "client_type": 3

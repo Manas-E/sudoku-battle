@@ -1,5 +1,5 @@
-name: sudoku_battle
-description: A new Flutter project.
+name: Sudoku_Battle
+description: A game to prove your intellectual superiority over others
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -45,6 +45,11 @@ dependencies:
   google_sign_in: ^5.4.2
   font_awesome_flutter: ^10.3.0
   provider: ^6.0.5
+  firebase_database: ^10.0.8
+  random_string: ^2.3.1
+  go_router: ^6.0.0
+  flutter_share: ^2.0.0
+  flutter_launcher_icons: ^0.11.0
 
 dev_dependencies:
   flutter_test:
@@ -105,3 +110,26 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_icons:
+  #  image_path: "assets/images/icon-128x128.png"
+  image_path_android: "lib/public/ic_launcher.png"
+  image_path_ios: "lib/public/ic_launcher.png"
+  android: true # can specify file name here e.g. "ic_launcher"
+  ios: true # can specify file name here e.g. "My-Launcher-Icon"
+  adaptive_icon_background: "lib/public/ic_launcher.png" # only available for Android 8.0 devices and above
+  adaptive_icon_foreground: "lib/public/ic_launcher.png" # only available for Android 8.0 devices and above
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  remove_alpha_ios: true
+  web:
+    generate: true
+    image_path: "lib/public/ic_launcher.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "lib/public/ic_launcher.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "lib/public/ic_launcher.png"

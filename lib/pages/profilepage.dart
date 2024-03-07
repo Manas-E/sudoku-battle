@@ -1,8 +1,7 @@
+import 'package:Sudoku_Battle/pages/battlepage.dart';
+import 'package:Sudoku_Battle/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sudoku_battle/pages/battlepage.dart';
-import 'package:sudoku_battle/pages/homepage.dart';
-import 'package:sudoku_battle/pages/profilepage.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

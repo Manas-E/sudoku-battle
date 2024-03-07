@@ -1,4 +1,4 @@
-import 'package:sudoku_battle/components/blokChar.dart';
+import 'package:Sudoku_Battle/components/blokChar.dart';
 
 class BoxInner {
   late int index;

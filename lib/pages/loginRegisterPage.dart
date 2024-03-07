@@ -1,13 +1,13 @@
+import 'package:Sudoku_Battle/pages/GoogleSignInProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:sudoku_battle/pages/GoogleSignInProvider.dart';
 
 class loginRegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
       padding: EdgeInsets.all(32),
-      child: Column (
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Spacer(),
@@ -34,16 +34,15 @@ class loginRegisterPage extends StatelessWidget {
           Spacer(),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
-              primary: Colors.white,
-              onPrimary: Colors.black,
-              minimumSize: Size(double.infinity, 50)
-            ),
+                primary: Colors.white,
+                onPrimary: Colors.black,
+                minimumSize: Size(double.infinity, 50)),
             icon: FaIcon(FontAwesomeIcons.google),
             label: Text('Sign Up with Google'),
             onPressed: () {
-              final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+              final provider =
+                  Provider.of<GoogleSignInProvider>(context, listen: false);
               provider.googleLogin();
-
             },
           ),
           SizedBox(height: 40),
@@ -52,13 +51,11 @@ class loginRegisterPage extends StatelessWidget {
               text: 'Already have an account?',
               children: [
                 TextSpan(
-                  text: 'Log in',
-                  style: TextStyle(decoration: TextDecoration.underline)
-                ),
+                    text: 'Log in',
+                    style: TextStyle(decoration: TextDecoration.underline)),
               ],
             ),
           ),
         ],
-      )
-  );
+      ));
 }

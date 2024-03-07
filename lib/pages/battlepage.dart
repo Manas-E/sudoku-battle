@@ -1,8 +1,9 @@
+import 'package:Sudoku_Battle/components/userScore.dart';
+import 'package:Sudoku_Battle/pages/battleRoom.dart';
+import 'package:Sudoku_Battle/pages/homepage.dart';
+import 'package:Sudoku_Battle/pages/profilepage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sudoku_battle/pages/homepage.dart';
-import 'package:sudoku_battle/pages/profilepage.dart';
-import 'package:sudoku_battle/pages/sudoku.dart';
 
 class BattlePage extends StatefulWidget {
   const BattlePage({super.key});
@@ -86,22 +87,54 @@ class _BattlePageState extends State<BattlePage> {
   }
 
   TextEditingController _textFieldController = TextEditingController();
-  Future<void> _displayTextInputDialog(BuildContext context) async {
+  TextEditingController _textFieldController1 = TextEditingController();
+
+  Future<void> _displayTextInputDialog(
+      BuildContext context, bool isCreate) async {
+    var name, code;
+
     return showDialog(
         context: context,
         builder: (context) {
           return AlertDialog(
             title: Text(
-              'Join a Room',
+              isCreate ? 'Create a Room' : 'Join a Room',
               style: fontStyleBlack,
             ),
-            content: TextField(
-              onChanged: (value) {
-                setState(() {});
-              },
-              controller: _textFieldController,
-              decoration: InputDecoration(hintText: "Enter Room Code"),
-            ),
+            content: isCreate
+                ? TextField(
+                    onChanged: (value2) {
+                      setState(() {
+                        name = value2;
+                      });
+                    },
+                    controller: _textFieldController1,
+                    decoration: InputDecoration(hintText: "Enter your Name"),
+                  )
+                : Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(
+                        onChanged: (value1) {
+                          setState(() {
+                            code = value1;
+                          });
+                        },
+                        controller: _textFieldController,
+                        decoration:
+                            InputDecoration(hintText: "Enter Room Code"),
+                      ),
+                      TextField(
+                        onChanged: (value2) {
+                          setState(() {
+                            name = value2;
+                          });
+                        },
+                        controller: _textFieldController1,
+                        decoration: InputDecoration(hintText: "Enter Name"),
+                      ),
+                    ],
+                  ),
             actions: <Widget>[
               TextButton(
                 child: Text('CANCEL'),
@@ -114,9 +147,44 @@ class _BattlePageState extends State<BattlePage> {
               TextButton(
                 child: Text('OK'),
                 onPressed: () {
-                  setState(() {
-                    Navigator.pop(context);
-                  });
+                  if (isCreate && name != null) {
+                    var player = UserScore(
+                        name: name,
+                        status: false,
+                        score: 0,
+                        wins: 0,
+                        mistakes: 0);
+
+                    setState(() {
+                      _textFieldController1.clear();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BattleRoom(newPlayer: player),
+                          ));
+                    });
+                  }
+                  if (name != null && code != null) {
+                    var player = UserScore(
+                        name: name,
+                        status: false,
+                        score: 0,
+                        wins: 0,
+                        mistakes: 0);
+
+                    setState(() {
+                      _textFieldController.clear();
+                      _textFieldController1.clear();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BattleRoom(
+                              newPlayer: player,
+                              roomCode: code,
+                            ),
+                          ));
+                    });
+                  }
                 },
               ),
             ],
@@ -130,14 +198,14 @@ class _BattlePageState extends State<BattlePage> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 243, 103, 101),
+      backgroundColor: Color.fromARGB(255, 255, 130, 128),
       resizeToAvoidBottomInset: false,
       bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.sports_mma),
                 label: 'Battle',
-                backgroundColor: Color.fromARGB(255, 243, 103, 101)),
+                backgroundColor: Color.fromARGB(255, 255, 130, 128)),
             BottomNavigationBarItem(
                 icon: Icon(Icons.fitness_center),
                 label: 'Train',
@@ -176,7 +244,7 @@ class _BattlePageState extends State<BattlePage> {
                     child: Center(
                       child: GestureDetector(
                         onTap: () {
-                          _displayTextInputDialog(context);
+                          _displayTextInputDialog(context, false);
                         },
                         child: Container(
                           alignment: Alignment.center,
@@ -199,21 +267,26 @@ class _BattlePageState extends State<BattlePage> {
                     left: screenWidth * 0.2,
                     right: screenWidth * 0.2,
                     bottom: 15),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    color: Colors.white,
-                    child: Center(
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 80,
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                        child: Text(
-                          'Create a Room',
-                          style: fontStyleBlack,
-                          textAlign: TextAlign.center,
+                child: GestureDetector(
+                  onTap: () {
+                    _displayTextInputDialog(context, true);
+                  },
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+                      padding: EdgeInsets.all(5),
+                      color: Colors.white,
+                      child: Center(
+                        child: Container(
+                          alignment: Alignment.center,
+                          height: 80,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                          child: Text(
+                            'Create a Room',
+                            style: fontStyleBlack,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ),

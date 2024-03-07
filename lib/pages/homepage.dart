@@ -1,10 +1,10 @@
+import 'package:Sudoku_Battle/pages/battlepage.dart';
+import 'package:Sudoku_Battle/pages/profilepage.dart';
+import 'package:Sudoku_Battle/pages/sudoku.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sudoku_battle/pages/battlepage.dart';
-import 'package:sudoku_battle/pages/profilepage.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:sudoku_battle/pages/sudoku.dart';
 
 import 'loggedInWidget.dart';
 import 'loginRegisterPage.dart';
@@ -118,9 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Expanded(
                 child: Padding(
-              padding: const EdgeInsets.only(top: 100),
+              padding: const EdgeInsets.only(top: 80),
               child: Text("Sudoku\n\nBattle", style: fontStyle),
-
             )),
             Expanded(
               flex: 2,
@@ -166,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           navigateToSudoku("Easy");
                         },
                         child: Container(
-                          padding: EdgeInsets.all(5),
+                          padding: EdgeInsets.all(20),
                           color: Colors.white,
                           child: Center(
                             child: Text(
@@ -190,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           navigateToSudoku("Medium");
                         },
                         child: Container(
-                          padding: EdgeInsets.all(5),
+                          padding: EdgeInsets.all(20),
                           color: Colors.white,
                           child: Center(
                             child: Text(
@@ -214,7 +213,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           navigateToSudoku("Hard");
                         },
                         child: Container(
-                          padding: EdgeInsets.all(5),
+                          padding: EdgeInsets.all(20),
                           color: Colors.white,
                           child: Center(
                             child: Text(

@@ -1,20 +1,17 @@
 import 'dart:ui';
 
+import 'package:Sudoku_Battle/pages/GoogleSignInProvider.dart';
+import 'package:Sudoku_Battle/pages/battlepage.dart';
+import 'package:Sudoku_Battle/pages/homepage.dart';
+import 'package:Sudoku_Battle/pages/profilepage.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:sudoku_battle/pages/GoogleSignInProvider.dart';
-import 'package:sudoku_battle/pages/battlepage.dart';
-import 'package:sudoku_battle/pages/homepage.dart';
-import 'package:sudoku_battle/pages/neu.dart';
-import 'package:sudoku_battle/pages/profilepage.dart';
-import 'package:sudoku_battle/pages/sudoku.dart';
-import 'package:sudoku_battle/pages/loginRegisterPage.dart';
-import 'package:sudoku_battle/pages/profilepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
@@ -23,6 +20,27 @@ void main() async {
 
   runApp(const MyApp());
 }
+
+// final GoRouter _router = GoRouter(
+//   routes: <RouteBase>[
+//     GoRoute(
+//       path: '/',
+//       builder: (BuildContext context, GoRouterState state) {
+//         return const IntroScreen();
+//       },
+//       routes: <RouteBase>[
+//         GoRoute(
+//           path: 'sudoku/:mode',
+//           builder: (BuildContext context, GoRouterState state) {
+//             return const  SudokuPage(
+//               difficulty: state.params['mode'].toString(),
+//             );
+//           },
+//         ),
+//       ],
+//     ),
+//   ],
+// );
 
 class MyApp extends StatelessWidget {
   static const String title = 'Authentication Page';
@@ -75,7 +93,22 @@ class _IntroScreenState extends State<IntroScreen> {
     if (index == 0)
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => BattlePage()),
+        PageRouteBuilder(
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            return Align(
+              child: SizeTransition(
+                sizeFactor: animation,
+                child: child,
+                axisAlignment: 0.0,
+              ),
+            );
+          },
+          transitionDuration: Duration(seconds: 1),
+          pageBuilder: (BuildContext context, Animation<double> animation,
+              Animation<double> secondaryAnimation) {
+            return BattlePage();
+          },
+        ),
       );
 
     if (index == 2)
@@ -89,6 +122,7 @@ class _IntroScreenState extends State<IntroScreen> {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
+
     Widget inner = Icon(
       Icons.filter_1,
       semanticLabel: "label",

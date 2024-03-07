@@ -1,7 +1,7 @@
+import 'package:Sudoku_Battle/pages/loggedInWidget.dart';
+import 'package:Sudoku_Battle/pages/loginRegisterPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sudoku_battle/pages/loggedInWidget.dart';
-import 'package:sudoku_battle/pages/loginRegisterPage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

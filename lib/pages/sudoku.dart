@@ -1,15 +1,12 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:Sudoku_Battle/components/blokChar.dart';
+import 'package:Sudoku_Battle/components/boxInner.dart';
+import 'package:Sudoku_Battle/components/focusClass.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quiver/iterables.dart';
-import 'package:sudoku_battle/components/blokChar.dart';
-import 'package:sudoku_battle/components/boxinner.dart';
-import 'package:sudoku_battle/components/button.dart';
-import 'package:sudoku_battle/components/focusClass.dart';
-import 'package:sudoku_battle/pages/neu.dart';
-import 'package:sudoku_battle/pages/number.dart';
 import 'package:sudoku_solver_generator/sudoku_solver_generator.dart';
 
 class SudokuPage extends StatefulWidget {
@@ -56,6 +53,9 @@ class _SudokuPageState extends State<SudokuPage> {
 
   var fontStyleHeader = GoogleFonts.roboto(
       textStyle: TextStyle(color: Colors.grey[700], fontSize: 20));
+
+  var fontStyleActions = GoogleFonts.roboto(
+      textStyle: TextStyle(color: Colors.grey[700], fontSize: 15));
 
   var fontStyleBlack = GoogleFonts.anton(
       textStyle: TextStyle(color: Colors.black, fontSize: 20));
@@ -328,7 +328,7 @@ class _SudokuPageState extends State<SudokuPage> {
               shrinkWrap: true,
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                childAspectRatio: 1,
+                childAspectRatio: 0.9,
                 crossAxisSpacing: 5,
                 mainAxisSpacing: 5,
               ),
@@ -344,7 +344,7 @@ class _SudokuPageState extends State<SudokuPage> {
                     shrinkWrap: true,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 3,
-                      childAspectRatio: 1,
+                      childAspectRatio: 0.9,
                       crossAxisSpacing: 2,
                       mainAxisSpacing: 2,
                     ),
@@ -379,7 +379,7 @@ class _SudokuPageState extends State<SudokuPage> {
                               : () => setFocus(index, indexChar),
                           child: Text(
                             "${blokChar.text}",
-                            style: TextStyle(color: colorText),
+                            style: TextStyle(color: colorText, fontSize: 30),
                           ),
                         ),
                       );
@@ -409,7 +409,7 @@ class _SudokuPageState extends State<SudokuPage> {
                             Icon(Icons.refresh, color: Colors.white),
                             Padding(
                               padding: const EdgeInsets.only(top: 5),
-                              child: Text("Restart", style: fontStyleHeader),
+                              child: Text("Restart", style: fontStyleActions),
                             )
                           ],
                         )),
@@ -429,30 +429,30 @@ class _SudokuPageState extends State<SudokuPage> {
                             Icon(Icons.auto_fix_normal, color: Colors.white),
                             Padding(
                               padding: const EdgeInsets.only(top: 5),
-                              child: Text("Erase", style: fontStyleHeader),
+                              child: Text("Erase", style: fontStyleActions),
                             )
                           ],
                         )),
                   ),
                 ),
-                Expanded(
-                  child: Container(
-                    height: 60,
-                    child: InkWell(
-                        onTap: () {},
-                        radius: 150,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Icon(Icons.edit_note, color: Colors.white),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5),
-                              child: Text("Note", style: fontStyleHeader),
-                            )
-                          ],
-                        )),
-                  ),
-                ),
+                // Expanded(
+                //   child: Container(
+                //     height: 60,
+                //     child: InkWell(
+                //         onTap: () {},
+                //         radius: 150,
+                //         child: Column(
+                //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //           children: [
+                //             Icon(Icons.edit_note, color: Colors.white),
+                //             Padding(
+                //               padding: const EdgeInsets.only(top: 5),
+                //               child: Text("Note", style: fontStyleActions),
+                //             )
+                //           ],
+                //         )),
+                //   ),
+                // ),
                 Expanded(
                   child: Container(
                       height: 60,
@@ -475,7 +475,7 @@ class _SudokuPageState extends State<SudokuPage> {
                               Icon(Icons.tungsten, color: Colors.white),
                               Padding(
                                 padding: const EdgeInsets.only(top: 5),
-                                child: Text("Hint", style: fontStyleHeader),
+                                child: Text("Hint", style: fontStyleActions),
                               )
                             ],
                           ))),

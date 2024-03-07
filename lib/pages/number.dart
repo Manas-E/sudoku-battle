@@ -1,5 +1,5 @@
+import 'package:Sudoku_Battle/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:sudoku_battle/utils/utils.dart';
 
 class NumberButton extends StatefulWidget {
   final double iconSize, height, width;
